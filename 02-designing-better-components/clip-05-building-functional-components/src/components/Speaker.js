@@ -1,5 +1,4 @@
-import SpeakerFavorite from "./SpeakerFavorite";
-
+import { useState } from "react";
 const Speaker = ({speaker, showSessions, onFavoriteToggle}) => {
     const { id, first, last, sessions } = speaker;
     return (
@@ -9,6 +8,23 @@ const Speaker = ({speaker, showSessions, onFavoriteToggle}) => {
                 <SpeakerDemographic {...speaker} onFavoriteToggle={onFavoriteToggle} />
                 {showSessions===true ? <Sessions sessions={sessions} />: null }
             </div>
+        </div>
+    );
+}
+
+function SpeakerFavorite({ favorite, onFavoriteToggle }) {
+    function doneCallBack() {
+        console.log(`In the SpeakerFavorite:doneCallBack ${new Date().getMilliseconds()}`);
+    }
+    return (
+        <div className="action padB1">
+            <span onClick={function () {
+                return onFavoriteToggle(doneCallBack);
+            }}>
+                <i className={favorite === true ? "fa fa-star orange" : "fa fa-star-o orange"}
+                />{" "}
+                Favorite {""}
+            </span>
         </div>
     );
 }

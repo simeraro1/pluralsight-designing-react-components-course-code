@@ -1,9 +1,8 @@
 import Speaker from "./Speaker";
 
 import ReactPlaceholder from "react-placeholder";
-import useRequestSpeakers from "../hooks/useRequestDelay";
+import { data } from "../../SpeakerData";
 import useRequestDelay, { REQUEST_STATUS } from "../hooks/useRequestDelay";
-import {data} from "../../SpeakerData";
 
 function SpeakerList({ showSessions }) {
     const {
@@ -21,7 +20,7 @@ function SpeakerList({ showSessions }) {
                 <div className="row">
                     {speakersData.map((speaker) => {
                         return (
-                            <Speaker speaker={speaker} showSessions={showSessions} key={speaker.id} onFavoriteToggle={() => updateRecord({...speaker, favorite: !speaker.favorite})} />
+                            <Speaker speaker={speaker} showSessions={showSessions} key={speaker.id} onFavoriteToggle={(doneCallBack) => updateRecord({ ...speaker, favorite: !speaker.favorite }, doneCallBack)} />
                         );
                     })}
                 </div>
